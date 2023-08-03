@@ -1,0 +1,31 @@
+version: "3.5"
+
+services:
+  be-api:
+    build: .
+    restart: always
+    depends_on:
+      - be-mysql
+      - be-migration
+    env_file:
+      - .env
+    ports: 
+      - 900:80
+      
+  be-mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dbRoot
+      MYSQL_PORT: 3306
+      MYSQL_USER: dbUser
+      MYSQL_PASSWORD: dbPassword
+      MYSQL_DATABASE: dbName
+
+  be-migration:
+    build: .
+    depends_on:
+      - be-mysql
+    env_file:
+      - .env
+    command: "npm run migrate"
