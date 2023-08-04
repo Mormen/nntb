@@ -39,7 +39,7 @@ const ReportModel = sequelizeConn.define<ReportI>("report", {
         allowNull: false
     },
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE 
+    updatedAt: DataTypes.DATE
 })
 
 export default ReportModel
